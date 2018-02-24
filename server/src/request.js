@@ -1,6 +1,6 @@
 "use strict"
 
-const API_URL = "http://localhost:8080"
+const API_URL = "http://localhost:4000"
 
 const request = new XMLHttpRequest()
 request.open("GET", API_URL)
