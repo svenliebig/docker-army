@@ -34,4 +34,4 @@ First change port in `main.go` file from 8080 to 4000. Then:
 
 ### Open
 
-Navigate to localhost:3000 and open console, there should be a response from the docker api.
+Navigate to `localhost:3000` and open console, there should be a response from the docker api.

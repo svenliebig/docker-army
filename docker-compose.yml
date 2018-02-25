@@ -1,0 +1,24 @@
+version: "3.4"
+services:
+    web:
+        image: sven.liebig/time-server:latest
+        ports:
+        - "3000:8080"
+        depends_on: 
+        - api
+    api:
+        image: sven.liebig/time-rest:latest
+        ports:
+        - "4000:8080"
+        depends_on: 
+        - db
+        links:
+        - db
+    db:
+        image: postgres:10.2
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: password
+        ports: 
+        - "5432:5432"
+        
