@@ -4,12 +4,13 @@ FROM golang:alpine AS builder
 WORKDIR /go/src/app
 COPY . .
 
+# RUN apk add git mercurial 
 RUN apk add --no-cache git mercurial 
 
 RUN go get -d -v ./...
 RUN go install -v ./...
 
-RUN apk del git mercurial
+# RUN apk del git mercurial
 
 #final stage
 FROM alpine:latest

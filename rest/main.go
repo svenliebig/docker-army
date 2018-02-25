@@ -10,6 +10,7 @@ import (
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	_ "github.com/lib/pq"
 )
 
 type Model struct {
@@ -27,17 +28,8 @@ func main() {
 	originsOk := handlers.AllowedOrigins([]string{"http://localhost:3000"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 
-	fmt.Printf("serve")
 	log.Fatal(http.ListenAndServe(":8080", handlers.CORS(headersOk, originsOk, methodsOk)(router)))
-
-	connStr := "postgres://postgres:password@localhost:5432?sslmode=verfiy-full"
-	db, err := sql.Open("postgres", connStr)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	db.Query("SELECT *")
-	fmt.Printf("%d Open Connections", db.Stats().OpenConnections)
+	fmt.Println("Started")
 }
 
 func GetSomething(w http.ResponseWriter, r *http.Request) {
@@ -46,7 +38,21 @@ func GetSomething(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("\n[%s] - GetSomething", time.Now())
 	json.NewEncoder(w).Encode(modelValue)
 
-	fmt.Printf("%d Open Connections", db.Stats().OpenConnections)
+	connStr := "postgresql://postgres:password@db/postgres?sslmode=disable"
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		panic(err)
+	}
+
+	rows, err := db.Query("SELECT * from USERS")
+
+	if err != nil {
+		panic(err)
+	} else {
+		fmt.Println(rows.Columns())
+	}
+
+	fmt.Printf("\n%d Open Connections\n", db.Stats().OpenConnections)
 }
 
 func GetSomethingWithNumber(w http.ResponseWriter, r *http.Request) {
