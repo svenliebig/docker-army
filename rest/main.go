@@ -1,28 +1,33 @@
 package main
 
 import (
-	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+	"runtime"
 	"time"
+
+	"./repository"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	_ "github.com/lib/pq"
 )
 
 type Model struct {
 	Wert string `json:"wert,omitempty"`
 }
 
-var db sql.DB
+type GoalResponseModel struct {
+	Id          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+}
 
 func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", GetSomething).Methods("GET")
-	router.HandleFunc("/{number}", GetSomethingWithNumber).Methods("GET")
+	// router.HandleFunc("/{number}", GetSomethingWithNumber).Methods("GET")
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	originsOk := handlers.AllowedOrigins([]string{"http://localhost:3000"})
@@ -33,31 +38,28 @@ func main() {
 }
 
 func GetSomething(w http.ResponseWriter, r *http.Request) {
-	var modelValue Model
-	modelValue = Model{Wert: "Hello go"}
-	fmt.Printf("\n[%s] - GetSomething", time.Now())
-	json.NewEncoder(w).Encode(modelValue)
+	start := time.Now()
 
-	connStr := "postgresql://postgres:password@db/postgres?sslmode=disable"
-	db, err := sql.Open("postgres", connStr)
-	if err != nil {
-		panic(err)
+	repo := repository.CreateRepository("asdf")
+	goals := repo.GetAllGoals()
+
+	response := make([]GoalResponseModel, 0, len(goals))
+
+	for _, goal := range goals {
+		response = append(response, GoalResponseModel{goal.Id, goal.Name, goal.Description})
 	}
 
-	rows, err := db.Query("SELECT * from USERS")
+	json.NewEncoder(w).Encode(response)
 
-	if err != nil {
-		panic(err)
-	} else {
-		fmt.Println(rows.Columns())
-	}
-
-	fmt.Printf("\n%d Open Connections\n", db.Stats().OpenConnections)
+	fmt.Printf("Total Read and Response Time: [%.5fs]\n", time.Since(start).Seconds())
+	response = nil
+	goals = nil
+	runtime.GC()
 }
 
-func GetSomethingWithNumber(w http.ResponseWriter, r *http.Request) {
-	var modelValue Model
-	fmt.Printf("\n[%s] - GetSomethingWithNumber", time.Now())
-	modelValue = Model{Wert: "Hello go +" + mux.Vars(r)["number"]}
-	json.NewEncoder(w).Encode(modelValue)
-}
+// func GetSomethingWithNumber(w http.ResponseWriter, r *http.Request) {
+// 	var modelValue Model
+// 	fmt.Printf("\n[%s] - GetSomethingWithNumber", time.Now())
+// 	modelValue = Model{Wert: "Hello go +" + mux.Vars(r)["number"]}
+// 	json.NewEncoder(w).Encode(modelValue)
+// }
