@@ -1,15 +1,8 @@
-const path = require('path')
-
-const root = path.resolve(__dirname, "..")
-const src = path.resolve(root, "src")
-const dist = path.resolve(root, "dist")
-const config = path.resolve(root, "config")
-const tsconfig = path.resolve(root, "tsconfig.json")
-const indexts = path.resolve(src, "index.tsx")
+const paths = require('./paths')
 
 module.exports = {
 	mode: "development",
-	entry: [indexts],
+	entry: [paths.indexts],
 	devtool: 'inline-source-map',
 	module: {
 		rules: [{
@@ -17,7 +10,7 @@ module.exports = {
 			use: [{
 				loader: 'ts-loader',
 				options: {
-					configFile: tsconfig
+					configFile: paths.tsconfig
 				}
 			}],
 			exclude: /node_modules/
@@ -27,7 +20,7 @@ module.exports = {
 		extensions: ['.tsx', '.ts', '.js']
 	},
 	output: {
-		path: dist,
-		filename: 'bundle.js'
+		path: paths.dist,
+		filename: paths.jsoutput
 	},
 }
