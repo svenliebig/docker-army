@@ -2,7 +2,7 @@
 
 const express = require("express")
 
-const PORT = process.argv[2] || 8080
+const PORT = process.argv[2] || 3000
 const HOST = "0.0.0.0"
 
 const app = express()

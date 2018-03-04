@@ -1,3 +1,6 @@
+export GOPATH=$PWD/rest
+/usr/local/go/bin/go get -d -v ./... ./rest/src/github.com/sly321/rest
+
 docker ps -aq | xargs docker stop
 docker ps -aq | xargs docker rm
 docker build -t sven.liebig/time-rest ./rest

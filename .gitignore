@@ -3,3 +3,5 @@ package-json.lock
 node_modules
 yarn_error.log
 npm_error.log
+rest/src/github.com/*
+!rest/src/github.com/sly321
