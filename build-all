@@ -1,0 +1,6 @@
+docker ps -aq | xargs docker stop
+docker ps -aq | xargs docker rm
+docker build -t sven.liebig/time-rest ./rest
+docker build -t sven.liebig/time-db ./db
+docker build -t sven.liebig/time-web ./web
+docker-compose up

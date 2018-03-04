@@ -1,23 +1,23 @@
-version: "2"
+version: '2'
 services:
-    web:
-        image: sven.liebig/time-server:latest
-        ports:
-        - "3000:8080"
-        depends_on: 
-        - api
-    api:
-        image: sven.liebig/time-rest:latest
-        ports:
-        - "4000:8080"
-        depends_on: 
-        - db
-        links:
-        - db
-    db:
-        image: sven.liebig/time-db:latest
-        restart: always
-        environment:
-            POSTGRES_PASSWORD: password
-        ports: 
-        - "5432:5432"
+  web:
+    image: 'sven.liebig/time-server:latest'
+    ports:
+      - '3000:8080'
+    depends_on:
+      - api
+  api:
+    image: 'sven.liebig/time-rest:latest'
+    ports:
+      - '4000:4000'
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    image: 'sven.liebig/time-db:latest'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - '5432:5432'

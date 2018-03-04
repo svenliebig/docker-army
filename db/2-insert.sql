@@ -1,11 +1,24 @@
 INSERT INTO users
+	(email)
 VALUES
-	(1, 'Hello@mail.de');
+	('first user');
+
+INSERT INTO users
+	(email)
+VALUES
+	('meth user');
 
 INSERT INTO goals
+	(name, description, period, owner)
 VALUES
-	(1, 'él first goal', 'viva dela goal description');
+	('my goal name', 'my description pattern', 'year', 1);
 
 INSERT INTO goals
+	(name, description, period, owner)
 VALUES
-	(2, 'hello', 'darkness my old goal');
+	('my goal name 2', 'my description pattern 2', 'week', 2);
+
+INSERT INTO goals
+	(name, description, period, owner)
+VALUES
+	('my goal name 3', 'my description pattern 3', 'day', 2);

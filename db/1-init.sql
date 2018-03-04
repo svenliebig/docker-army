@@ -1,12 +1,14 @@
 create table users
 (
-	id INT,
+	id SERIAL PRIMARY KEY,
 	email VARCHAR
 );
 
 create table goals
 (
-	id INT,
+	id SERIAL,
 	name VARCHAR,
-	description VARCHAR
+	description VARCHAR,
+	period VARCHAR,
+	owner integer NOT NULL REFERENCES users
 );
