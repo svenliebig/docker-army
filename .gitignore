@@ -5,3 +5,6 @@ yarn_error.log
 npm_error.log
 rest/src/github.com/*
 !rest/src/github.com/sly321
+yarn-error.log
+bundle.js
+coverage
