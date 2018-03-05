@@ -1,6 +1,6 @@
 import * as React from "react"
-import { withStyles, AppBar, Toolbar, IconButton, MenuItem, Button, Icon, StyledComponentProps, WithStyles, Theme, Divider, Typography } from "material-ui";
-import { Drawer } from "..";
+import { withStyles, AppBar, Toolbar, StyledComponentProps, WithStyles, Theme, Divider, Typography } from "material-ui";
+import { Drawer, IconButton } from "..";
 
 export interface Props extends StyledComponentProps {
     children?: React.ReactNode
@@ -104,15 +104,11 @@ class Skeleton extends React.Component<Props & WithStyles, State> {
             <div className={this.props.classes.root}>
                 <AppBar className={this.appbarClassNames} color="primary">
                     <Toolbar>
-                        <IconButton color="inherit" onClick={this.toggleLeftSidemenu.bind(this)}>
-                            <Icon>dehaze</Icon>
-                        </IconButton>
+                        <IconButton icon="dehaze" onClick={this.toggleLeftSidemenu.bind(this)} />
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             VCR
                         </Typography>
-                        <IconButton color="inherit" onClick={this.toggleRightSidemenu.bind(this)}>
-                            <Icon>mail</Icon>
-                        </IconButton>
+                        <IconButton icon="mail" badge={21} onClick={this.toggleRightSidemenu.bind(this)} />
                     </Toolbar>
                 </AppBar>
                 <Drawer anchor="left" open={this.state.leftDrawerOpen}>
