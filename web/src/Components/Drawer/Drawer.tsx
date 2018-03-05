@@ -27,14 +27,6 @@ const styles = (theme: Theme) => ({
 })
 
 class Drawer extends React.Component<Props & WithStyles<"drawerHeader" | "drawerPaper">, State> {
-
-    constructor(props: Props) {
-        super(props as any)
-
-        this.state = {
-        }
-    }
-
     render(): JSX.Element {
         const { classes } = this.props
         return (

@@ -12,14 +12,6 @@ export interface State {
 }
 
 export default class IconButton extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props)
-
-        this.state = {
-        }
-    }
-
     withBadge(content: any) {
         if (this.props.badge && this.props.badge > 0) {
             return <Badge badgeContent={this.props.badge} color="secondary">{content}</Badge>
