@@ -51,6 +51,7 @@ const styles = (theme: Theme) => ({
     toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
+        overflow: "hidden",
         marginLeft: -drawerWidth,
         marginRight: -drawerWidth,
         backgroundColor: theme.palette.background.default,
