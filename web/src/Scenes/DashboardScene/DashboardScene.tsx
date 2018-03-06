@@ -3,6 +3,8 @@ import Skeleton from "../../Components/Skeleton/Skeleton"
 import { Paper, Typography, Theme, withStyles, WithStyles, Icon, Button, AppBar, Tabs, Tab } from "material-ui";
 import { Zoom } from "material-ui/transitions";
 import SwipeableViews from "react-swipeable-views";
+import red from 'material-ui/colors/red';
+
 
 export interface Props {
 }
@@ -66,9 +68,10 @@ class DashboardScene extends React.Component<Props & WithStyles<"root" | "fab" |
             exit: theme.transitions.duration.leavingScreen,
         };
         const fab = {
+            backgroundColor: red[700],
             color: 'primary',
             className: classes.fab,
-            icon: <Icon>add</Icon>,
+            icon: <Icon>delete</Icon>,
         }
 
         const tabsCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
@@ -76,11 +79,6 @@ class DashboardScene extends React.Component<Props & WithStyles<"root" | "fab" |
         return (
             <Skeleton>
                 <div className={classes.root}>
-                    <Paper className={this.props.classes.paper} elevation={0}>
-                        <Typography variant="headline" component="h3">
-                            elevation 0
-                    </Typography>
-                    </Paper>
                     <AppBar position="static" color="default">
                         <Tabs
                             value={this.state.value}
@@ -99,6 +97,11 @@ class DashboardScene extends React.Component<Props & WithStyles<"root" | "fab" |
                     >
                         {tabsCount.map(val => <TabContainer key={val} dir={theme.direction}>Item {val}</TabContainer>)}
                     </SwipeableViews>
+                    <Paper className={this.props.classes.paper} elevation={0}>
+                        <Typography variant="headline" component="h3">
+                            elevation 0
+                        </Typography>
+                    </Paper>
                     <Paper className={this.props.classes.paper} elevation={1}>
                         <Typography variant="headline" component="h3">
                             elevation 1
@@ -130,12 +133,11 @@ class DashboardScene extends React.Component<Props & WithStyles<"root" | "fab" |
                     </Typography>
                     </Paper>
                     <Zoom
-                        key={fab.color}
                         in={true}
                         timeout={transitionDuration}
                         unmountOnExit
                     >
-                        <Button variant="fab" className={fab.className} color="primary">
+                        <Button variant="fab" className={fab.className} style={{ position: "fixed", backgroundColor: fab.backgroundColor, color: "white" }} color="inherit" >
                             {fab.icon}
                         </Button>
                     </Zoom>
