@@ -63,7 +63,7 @@ const styles = (theme: Theme) => ({
     },
     contentShiftLeft: {
         // content dont flow?
-        marginLeft: 0,
+        // marginLeft: 0,
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
@@ -71,7 +71,7 @@ const styles = (theme: Theme) => ({
     },
     contentShiftRight: {
         // content dont flow?
-        marginRight: 0,
+        // marginRight: 0,
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,

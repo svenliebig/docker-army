@@ -23,6 +23,7 @@ const styles = (theme: Theme) => ({
     drawerPaper: {
         position: "relative",
         width: drawerWidth,
+        height: "100%"
     },
 })
 
@@ -30,9 +31,7 @@ class Drawer extends React.Component<Props & WithStyles<"drawerHeader" | "drawer
     render(): JSX.Element {
         const { classes } = this.props
         return (
-            <MaterialDrawer anchor={this.props.anchor} variant="persistent" open={this.props.open} classes={{
-                paper: classes.drawerPaper,
-            }}>
+            <MaterialDrawer anchor={this.props.anchor} variant="persistent" open={this.props.open} classes={{ paper: classes.drawerPaper }}>
                 <div className={classes.drawerHeader} />
                 {this.props.children}
             </MaterialDrawer>
