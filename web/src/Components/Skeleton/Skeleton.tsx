@@ -1,5 +1,5 @@
 import * as React from "react"
-import { withStyles, AppBar, Toolbar, StyledComponentProps, WithStyles, Theme, Divider, Typography } from "material-ui";
+import { withStyles, AppBar, Toolbar, StyledComponentProps, WithStyles, Theme, Divider, Typography, List, ListItem, ListItemIcon, Icon, ListItemText } from "material-ui";
 import { Drawer, IconButton } from "..";
 
 export interface Props extends StyledComponentProps {
@@ -116,7 +116,35 @@ class Skeleton extends React.Component<Props & WithStyles, State> {
                 </AppBar>
                 <Drawer anchor="left" open={this.state.leftDrawerOpen}>
                     <Divider />
-                    Ello
+                    <List component="nav">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <Icon>mail</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary="Inbox" />
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <Icon>drafts</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary="Drafts" />
+                        </ListItem>
+                    </List>
+                    <Divider />
+                    <List component="nav">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <Icon>mail</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary="Inbox" />
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <Icon>drafts</Icon>
+                            </ListItemIcon>
+                            <ListItemText primary="Drafts" />
+                        </ListItem>
+                    </List>
                 </Drawer>
                 <div className={this.contentClassNames}>
                     <div className={classes.drawerHeader} />
