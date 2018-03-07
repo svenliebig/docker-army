@@ -7,4 +7,13 @@ export default class EpisodeModel {
 
     constructor() {
     }
+
+    static unfreeze(json: string): EpisodeModel | null {
+        if (!json)
+            return null
+
+        const model = new EpisodeModel()
+
+        return model
+    }
 }
